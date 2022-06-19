@@ -8,7 +8,6 @@ public class ProductInfo {
 	private double price;
 	private String image;
 
-
 	public ProductInfo(Product product) {
 		this.code = product.getCode();
 		this.name = product.getName();

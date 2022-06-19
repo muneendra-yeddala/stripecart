@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-
 import java.util.List;
-
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -41,14 +39,13 @@ public class MainController {
 
 	@Autowired
 	private ProductDAO productDAO;
-	
+
 	@Resource
 	private StripeService stripeService;
-	
+
 	@Value("${STRIPE_PUBLIC_KEY}")
 	private String stripePublicKey;
-	
-	
+
 	@InitBinder
 	public void myInitBinder(WebDataBinder dataBinder) {
 		Object target = dataBinder.getTarget();
@@ -201,8 +198,8 @@ public class MainController {
 		}
 		model.addAttribute("myCart", cartInfo);
 		model.addAttribute("stripePublicKey", stripePublicKey);
-	//	String strupeSessionid = this.buildStripeSession(cartInfo);
-	//	model.addAttribute("CHECKOUT_SESSION_ID", strupeSessionid);
+		// String strupeSessionid = this.buildStripeSession(cartInfo);
+		// model.addAttribute("CHECKOUT_SESSION_ID", strupeSessionid);
 		return "shoppingCartConfirmation";
 	}
 
@@ -218,24 +215,21 @@ public class MainController {
 
 			return "redirect:/shoppingCartCustomer";
 		}
-		
-	
+
 		// Store last cart.
 		Utils.storeLastOrderedCartInSession(request, cartInfo);
-		
-		
+
 		String intentId = stripeService.createIntent(cartInfo);
 		cartInfo.setOrderNum(intentId);
-	
+
 		Order order = orderDAO.saveOrder(cartInfo);
-	
+
 		intentId = stripeService.captureIntent(order.getOrderNum());
 		cartInfo.setOrderNum(intentId);
-		
+
 		// Remove Cart from Session.
 		Utils.removeCartInSession(request);
 
-		
 		return "redirect:/shoppingCartFinalize";
 	}
 
