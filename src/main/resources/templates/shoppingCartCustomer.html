@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Enter Customer Information</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://js.stripe.com/v3/"> </script>
+      <script>
+		var stripePublicKey = "${stripePublicKey}";
+	</script>
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title">Enter Customer Information</div>
+      
+      <form method="POST" th:object = "${customerForm}" th:action="@{/shoppingCartCustomer}" id="cardForm" >
+         
+         <table >
+         <tbody >
+            <tr>
+               <td>Name *</td>
+               <td><input th:field="*{name}" /></td>
+               <td>
+                  <span class="error-message"
+                     th:if="${#fields.hasErrors('name')}" th:errors="*{name}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td>Email *</td>
+               <td><input th:field="*{email}" /></td>
+               <td>
+                  <span class="error-message"
+                     th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+               </td>
+            </tr>
+            	<tr>
+       		    <td> Card Info * </td>
+       		    <td>   <div id="card-element"></div> </td>
+               </tr>
+           
+            <tr>
+               <td>&nbsp;</td>
+               <td><input type="submit" value="Submit" /> <input type="reset"
+                  value="Reset" /></td>
+            </tr>
+            </tbody>
+         </table>
+         <div id="paymentError"> </div>
+         <input type="hidden" th:field="*{paymentToken}" id="paymentToken" name="paymentToken"/>
+        	
+      </form>
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
+   
+    <script>
+      document.addEventListener("DOMContentLoaded",  () => {
+        const stripe = Stripe('pk_test_51LBeJ2LDxfG9ye3ySFJiYxa7NvienCXNHYK9fxuL0hczDhCdbmLxAYmocaxhY6F3RdZHCrvJaNabvCJRofqNZhDu00KnAmtn8C');
+        const element = stripe.elements();
+        const cardElement = element.create("card");
+        cardElement.mount("#card-element");
+
+
+        $('#cardForm').off('click').on('click', function(e) {
+      //  $("#cardForm").submit(function (e) {
+          e.preventDefault();
+          stripe.createToken(cardElement).then(function (result) {
+            console.log(result);
+            if (result.error) {
+              console.log(result.error.message);
+              $("#paymentError").html(result.error.message);
+            } else {
+              console.log(result.token.id);
+             // $("#cardForm").html(result.token.id);
+              $('#paymentToken').val(result.token.id);
+              // alert($('#paymentToken').val())
+              $("#cardForm").submit();
+            }
+          });
+        });
+      });
+    </script>
+</html>

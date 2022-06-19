@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>Product List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title">Product List</div>
+      
+      <div class="product-preview-container" th:each="prodInfo : ${paginationProducts}">
+         <ul>
+            <li><img class="product-image" th:src="${prodInfo.image}" /></li>
+            <li>Code: <span th:utext="${prodInfo.code}"></span></li>
+            <li>Name: <span th:utext="${prodInfo.name}"></span></li>
+            <li>Price: <span th:utext="${prodInfo.price}"></span></li>
+            <li>
+               <a th:href="@{|/buyProduct?code=${prodInfo.code}|}">Buy Now</a>
+            </li>
+        
+         </ul>
+      </div>
+      
+      <br/>
+ 
+      
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
+</html>
