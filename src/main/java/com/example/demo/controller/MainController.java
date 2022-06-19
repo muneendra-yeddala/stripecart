@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +30,8 @@ import com.example.demo.model.CustomerInfo;
 import com.example.demo.model.ProductInfo;
 import com.example.demo.utils.StripeService;
 import com.example.demo.utils.Utils;
-import com.stripe.Stripe;
-import com.stripe.exception.StripeException;
-import com.stripe.model.Charge;
 
-import com.stripe.model.checkout.Session;
-import com.stripe.param.checkout.SessionCreateParams;
-import com.stripe.param.checkout.SessionCreateParams.LineItem;
+import com.stripe.exception.StripeException;
 
 @Controller
 public class MainController {
