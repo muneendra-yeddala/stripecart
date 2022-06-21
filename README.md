@@ -39,7 +39,7 @@ To make use of the Stripe API for Java in the project, we add the corresponding 
 # Flow Diagram
 
 <div align="center">
-    <img src="/images/Cart-Flow.png" width="400px"></img> 
+    <img src="/images/Cart-Flow.png" width="600px"></img> 
 </div>
 
 # Frontend
