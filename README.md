@@ -61,6 +61,10 @@ To make use of the Stripe API for Java in the project, we add the corresponding 
 }
 ```
 
+<div align="center">
+    <img src="/images/mount-card.png" width="600px"></img> 
+</div>
+
 - Generate Token for the user entered card details
 
 ```js
@@ -116,6 +120,10 @@ To make use of the Stripe API for Java in the project, we add the corresponding 
 	}
 ```
 
+<div align="center">
+    <img src="/images/product-list.png" width="600px"></img> 
+</div>
+
 - Register Customer with Stripe
 
 ```java
@@ -129,6 +137,10 @@ To make use of the Stripe API for Java in the project, we add the corresponding 
 	}
 
 ```
+
+<div align="center">
+    <img src="/images/customers.png" width="600px"></img> 
+</div>
 
 - Create PaymentInetent with Stripe
 
@@ -180,6 +192,14 @@ Stripe also Provides the APIs something called Charge for businesses where payme
 	}
 
 ```
+
+<div align="center">
+    <img src="/images/summary.png" width="600px"></img> 
+</div>
+
+<div align="center">
+    <img src="/images/payments.png" width="600px"></img> 
+</div>
 
 - To run the application
 
