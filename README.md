@@ -59,7 +59,7 @@ TODO
 }
 ```
 
-- Generate Token for the user entered details
+- Generate Token for the user entered card details
 
 ```js
     <script>
