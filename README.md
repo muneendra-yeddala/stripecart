@@ -38,7 +38,7 @@ To make use of the Stripe API for Java in the project, we add the corresponding 
 
 # Flow Diagram
 
-TODO
+https://github.com/muneendra-yeddala/stripecart/blob/main/images/Cart-Flow.png
 
 # Frontend
 
@@ -183,4 +183,6 @@ Stripe also Provides the APIs something called Charge for businesses where payme
 
 ```cmd
 java -jar stripecart-0.0.1-SNAPSHOT.jar
+
+http://localhost:8080/
 ```
