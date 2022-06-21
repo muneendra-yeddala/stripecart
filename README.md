@@ -178,3 +178,9 @@ Stripe also Provides the APIs something called Charge for businesses where payme
 	}
 
 ```
+
+- To run the application
+
+```cmd
+java -jar stripecart-0.0.1-SNAPSHOT.jar
+```
